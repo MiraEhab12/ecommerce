@@ -1,0 +1,44 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ecommerce_udemy/config/style/app_color.dart';
+
+import '../../../utils/app_utils/app_strings.dart';
+import '../../../utils/helpers/validation_form.dart';
+
+class NameField extends StatelessWidget {
+  final bool isReadOnly;
+  final TextEditingController controller;
+  const NameField({
+    super.key,
+    required this.controller,
+    this.isReadOnly = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      readOnly: isReadOnly,
+      controller: controller,
+      validator: ValidationForm.descriptionValidator,
+     maxLines: 4,
+      keyboardType: TextInputType.name,
+      decoration: InputDecoration( 
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          
+        ),
+        fillColor: Colors.white,
+        focusedBorder:OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(width: 1,)
+        ) ,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(width: 1,)
+        ),
+       
+        contentPadding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 15.w),
+      ),
+    );
+  }
+}
