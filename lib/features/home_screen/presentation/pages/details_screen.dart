@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_udemy/config/style/app_color.dart';
 import 'package:ecommerce_udemy/config/style/text_styles.dart';
 import 'package:ecommerce_udemy/core/widgets/components/app_image_view.dart';
+import 'package:ecommerce_udemy/features/home_screen/data/model/home_model.dart';
 import 'package:ecommerce_udemy/generated/assets.dart';
 import 'package:ecommerce_udemy/utils/extentions/extention.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +13,7 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final product = ModalRoute.of(context)!.settings.arguments as ProductModel;
     return Scaffold(
       appBar: AppBar(
         title: Text("Details",style: AppTextStyle.font24black2600,),
@@ -25,14 +28,11 @@ class DetailsScreen extends StatelessWidget {
                
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppImageView(
-                    imagePath: Assets.assetsImagesShirt,
-                    width: double.infinity,
-                    height: 368.h,
-                  ),
+                  CachedNetworkImage(imageUrl:  product.thumbnail, width: double.infinity, height: 368.h, fit: BoxFit.cover,),
+                 
                   12.hs,
                   Text(
-                    "Fit Polo T Shirt",
+                    product.title,
                     style: AppTextStyle.font16black2600,
                   ),
                   13.hs,
@@ -40,16 +40,14 @@ class DetailsScreen extends StatelessWidget {
                     children: [
                       Icon(Icons.star, color: Colors.amber, size: 16.w,),
                       4.ws,
-                      Text("4.9", style: AppTextStyle.font16black2600,),
+                      Text(product.rating.toString() , style: AppTextStyle.font16black2600,),
                       8.ws,
                       Text("(230 Reviews)", style: AppTextStyle.font16gray600,),
                     ],
                   ),
                   13.hs,
-                  Text("Blue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of ThemBlue T Shirt . Good for All Men and Suits for All of Them.",
-                      style: AppTextStyle.font16gray400,
-                      
-                  ),
+                  Text(product.description , style: AppTextStyle.font16gray400,),                      
+    
                
                 
                 ],
@@ -76,7 +74,7 @@ class DetailsScreen extends StatelessWidget {
                         children: [
                           Text("Price",style: AppTextStyle.font16gray400,),
                           8.hs,
-                          Text(" 1,190",style: AppTextStyle.font24black2600,),
+                          Text("\$${product.price}",style: AppTextStyle.font24black2600,),
                         ],
                       ),
                       16.ws,

@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
                 SearchFilterWidgets(),
                 16.hs,
 
-                const CustomTabsWidgets(), 
+                const CustomTabsWidgets(),
                 24.hs,
                 Expanded(
                   child: BlocBuilder<ProductCubit, ProductState>(
@@ -59,7 +59,7 @@ class HomeScreen extends StatelessWidget {
                         final products = state.products;
                         return RefreshIndicator(
                           onRefresh: () async {
-                             context.read<CategoryCubit>().selectCategory(0);
+                            context.read<CategoryCubit>().selectCategory(0);
                             context.read<ProductCubit>().getProducts();
                           },
                           child: GridView.builder(
@@ -75,7 +75,8 @@ class HomeScreen extends StatelessWidget {
                               final product = products[index];
                               return InkWell(
                                 onTap: () {
-                                  RouterApp.pushNamed(RouteName.detailsScreen);
+                                  RouterApp.pushNamed(RouteName.detailsScreen,
+                                      arguments: product);
                                 },
                                 child: Container(
                                   margin: EdgeInsets.all(8),
@@ -84,7 +85,9 @@ class HomeScreen extends StatelessWidget {
                                   child: Column(
                                     children: [
                                       ClipRRect(
-                                        borderRadius: BorderRadius.circular(10.r),
+                                        borderRadius: BorderRadius.circular(
+                                          10.r,
+                                        ),
                                         child: CachedNetworkImage(
                                           imageUrl: product.thumbnail,
                                           width: double.infinity,

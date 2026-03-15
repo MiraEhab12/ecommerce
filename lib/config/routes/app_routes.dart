@@ -23,7 +23,7 @@ class RouterApp {
         case RouteName.homescreen:
           return MaterialPageRoute(builder: (_) => HomeScreen());
         case RouteName.detailsScreen:
-          return MaterialPageRoute(builder: (_) => DetailsScreen());
+          return MaterialPageRoute(builder: (_) => DetailsScreen(), settings: settings);
         case RouteName.cartScreen:
           return MaterialPageRoute(builder: (_) => CartScreen());
 

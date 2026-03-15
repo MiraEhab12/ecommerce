@@ -23,7 +23,7 @@ class CategoryCubit extends Cubit<CategoryState> {
         emit(
           state.copyWith(
             loading: false,
-             categories: categories,
+            categories: categories,
             selectedIndex: 0,
           ),
         );

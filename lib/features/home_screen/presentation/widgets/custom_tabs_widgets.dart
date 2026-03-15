@@ -46,14 +46,16 @@ class CustomTabsWidgets extends StatelessWidget {
 
                 return GestureDetector(
                   onTap: () {
-  context.read<CategoryCubit>().selectCategory(index);
+                    context.read<CategoryCubit>().selectCategory(index);
 
-  if (category == "All") {
-    context.read<ProductCubit>().getProducts();
-  } else {
-    context.read<ProductCubit>().getProductsByCategory(category);
-  }
-},
+                    if (category == "All") {
+                      context.read<ProductCubit>().getProducts();
+                    } else {
+                      context.read<ProductCubit>().getProductsByCategory(
+                        category,
+                      );
+                    }
+                  },
                   child: Container(
                     padding: EdgeInsets.symmetric(
                       vertical: 7.h,

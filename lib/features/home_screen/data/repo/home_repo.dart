@@ -6,7 +6,9 @@ import 'package:ecommerce_udemy/utils/api_utils/api_constant.dart';
 
 abstract class ProductRepo {
   Future<Either<List<ProductModel>, AppException>> getProducts();
-  Future<Either<List<ProductModel>, AppException>> getProductsByCategory(String category);
+  Future<Either<List<ProductModel>, AppException>> getProductsByCategory(
+    String category,
+  );
 }
 
 class ProductRepoImpl implements ProductRepo {
@@ -16,23 +18,23 @@ class ProductRepoImpl implements ProductRepo {
   @override
   Future<Either<List<ProductModel>, AppException>> getProducts() async {
     try {
-      final response = await _apiClient.get(
-        endPoint: ApiConstant.products,
-      );
+      final response = await _apiClient.get(endPoint: ApiConstant.products);
 
       final List products = response.data['products'];
 
-      final productsList =
-          products.map((e) => ProductModel.fromMap(e)).toList();
+      final productsList = products
+          .map((e) => ProductModel.fromMap(e))
+          .toList();
 
       return left(productsList);
     } on AppException catch (e) {
       return right(e);
     }
   }
-  
 
-  Future<Either<List<ProductModel>, AppException>> getProductsByCategory(String category) async {
+  Future<Either<List<ProductModel>, AppException>> getProductsByCategory(
+    String category,
+  ) async {
     try {
       final response = await _apiClient.get(
         endPoint: "${ApiConstant.productCategory}$category",
@@ -40,8 +42,9 @@ class ProductRepoImpl implements ProductRepo {
 
       final List products = response.data['products'];
 
-      final productsList =
-          products.map((e) => ProductModel.fromMap(e)).toList();
+      final productsList = products
+          .map((e) => ProductModel.fromMap(e))
+          .toList();
 
       return left(productsList);
     } on AppException catch (e) {
