@@ -1,6 +1,9 @@
+import 'package:ecommerce_udemy/core/data/local/cache_helper.dart';
 import 'package:ecommerce_udemy/features/auth_screen/data/repo/auth_repo.dart';
 import 'package:ecommerce_udemy/features/auth_screen/presentation/manager/auth_state.dart';
 import 'package:ecommerce_udemy/locator.dart';
+import 'package:ecommerce_udemy/utils/cache_utils/cach_saving.dart';
+import 'package:ecommerce_udemy/utils/cache_utils/pref_keys.dart';
 import 'package:ecommerce_udemy/utils/helpers/storage_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,6 +18,9 @@ class AuthCubit extends Cubit<AuthState> {
       (user) async {
          await sl<SecureStorage>().saveToken(user.accessToken!);
          print('SAVED TOKEN = ${user.accessToken}');
+          await CacheSave.saveUserId(user.id);
+          print("Saved User ID = ${user.id}");
+print("From Cache = ${CacheHelper.getData(key: PrefKeys.userId)}");
         emit(state.copyWith(
           loading: false,
           user: user,
@@ -27,4 +33,9 @@ class AuthCubit extends Cubit<AuthState> {
         ));
       },
     );
-  }}
+  }
+  void logout() {
+        // Clear user session or token
+        sl<SecureStorage>().removeToken();
+      }
+  }

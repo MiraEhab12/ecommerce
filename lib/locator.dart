@@ -2,6 +2,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_udemy/features/auth_screen/data/repo/auth_repo.dart';
+import 'package:ecommerce_udemy/features/cartscreen/data/repo/cart_repo.dart';
 import 'package:ecommerce_udemy/features/home_screen/data/repo/category_repo.dart';
 import 'package:ecommerce_udemy/features/home_screen/data/repo/home_repo.dart';
 import 'package:ecommerce_udemy/utils/helpers/storage_helper.dart';
@@ -32,6 +33,7 @@ class DbInjection {
     _loginRepoInit();
     _homeRepoInit();
     _categoryRepoInit();
+    _cartRepoInit();
  
   }
 
@@ -101,6 +103,10 @@ static void _storageHelperInit() {
       () => CategoryRepoImpl(sl()),
     );
   } 
- 
+  static void _cartRepoInit() {
+    sl.registerLazySingleton<CartRepo>(
+      () => CartRepoImpl(sl()),
+    );
+  } 
 
 }

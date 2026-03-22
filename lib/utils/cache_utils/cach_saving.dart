@@ -10,8 +10,7 @@ class CacheSave {
 
 
         
-  static saveMeal(saveMeal) async =>
-      await CacheHelper.saveData(key: PrefKeys.saveMeal, value: saveMeal);
+ 
 
   static saveUserId(userId) async =>
       await CacheHelper.saveData(key: PrefKeys.userId, value: userId);

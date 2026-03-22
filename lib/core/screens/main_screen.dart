@@ -2,6 +2,7 @@
 import 'package:ecommerce_udemy/core/manager/cubit.dart';
 import 'package:ecommerce_udemy/core/manager/state.dart';
 import 'package:ecommerce_udemy/core/widgets/components/bottom_navbar.dart';
+import 'package:ecommerce_udemy/features/account_screen/presentation/pages/account_screen.dart';
 import 'package:ecommerce_udemy/features/cartscreen/presentation/pages/cart_screen.dart';
 import 'package:ecommerce_udemy/features/home_screen/presentation/pages/home_screen.dart';
 
@@ -22,7 +23,7 @@ class MainScreen extends StatelessWidget {
           body: [
           HomeScreen(),
           CartScreen(),
-          HomeScreen(),
+          AccountScreen(),
           
            // const IngredientScreen(),
             //const ListviewScreen(),

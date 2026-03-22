@@ -1,6 +1,9 @@
 import 'package:ecommerce_udemy/config/routes/app_routes.dart';
 import 'package:ecommerce_udemy/blocobserve.dart';
 import 'package:ecommerce_udemy/features/auth_screen/presentation/pages/login_screen.dart';
+import 'package:ecommerce_udemy/features/cartscreen/data/repo/cart_repo.dart';
+import 'package:ecommerce_udemy/features/cartscreen/presentation/manager/cart_cubit.dart';
+import 'package:ecommerce_udemy/features/home_screen/presentation/pages/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,15 +48,20 @@ class MyApp extends StatelessWidget {
         child: LocalizedApp(
           child: AppCheckInternetBuilder(
             child: MultiBlocProvider(
-              providers: [BlocProvider(create: (_) => AppCubit())],
+              providers: [
+                BlocProvider(create: (_) => AppCubit()),
+                BlocProvider(
+                  create: (context) => CartCubit(sl<CartRepo>())//userid
+                ),
+              ],
               child: MaterialApp(
                 title: 'news app',
                 debugShowCheckedModeBanner: false,
                 theme: appTheme,
                 themeMode: ThemeMode.light,
                 color: AppColors.white,
-                home: //MainScreen(), 
-                 LoginScreen(),
+                home: MainScreen(),
+                //LoginScreen(),
                 navigatorKey: RouterApp.navigatorKey,
                 onGenerateRoute: RouterApp.generateRoute,
                 builder: LocalizeAndTranslate.directionBuilder,

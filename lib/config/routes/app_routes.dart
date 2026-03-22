@@ -1,4 +1,6 @@
 import 'package:ecommerce_udemy/core/screens/main_screen.dart';
+import 'package:ecommerce_udemy/features/account_screen/presentation/pages/account_screen.dart';
+import 'package:ecommerce_udemy/features/auth_screen/presentation/pages/login_screen.dart';
 import 'package:ecommerce_udemy/features/auth_screen/presentation/pages/sign_up_sceen.dart';
 import 'package:ecommerce_udemy/features/cartscreen/presentation/pages/cart_screen.dart';
 import 'package:ecommerce_udemy/features/home_screen/presentation/pages/details_screen.dart';
@@ -16,6 +18,8 @@ class RouterApp {
       var args = settings.arguments;
 
       switch (settings.name) {
+         case RouteName.loginScreen:
+          return MaterialPageRoute(builder: (_) => LoginScreen());
         case RouteName.signupSceen:
           return MaterialPageRoute(builder: (_) => SignupSceen());
           case RouteName.mainScreen:
@@ -26,7 +30,8 @@ class RouterApp {
           return MaterialPageRoute(builder: (_) => DetailsScreen(), settings: settings);
         case RouteName.cartScreen:
           return MaterialPageRoute(builder: (_) => CartScreen());
-
+  case RouteName.accountScreen:
+          return MaterialPageRoute(builder: (_) => AccountScreen());
         default:
           return MaterialPageRoute(builder: (_) => const MainScreen());
       }

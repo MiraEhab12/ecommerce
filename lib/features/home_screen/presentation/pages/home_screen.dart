@@ -88,10 +88,13 @@ class HomeScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(
                                           10.r,
                                         ),
-                                        child: CachedNetworkImage(
-                                          imageUrl: product.thumbnail,
-                                          width: double.infinity,
-                                          height: 174.h,
+                                        child: Hero(
+                                          tag: product.title,
+                                          child: CachedNetworkImage(
+                                            imageUrl: product.thumbnail,
+                                            width: double.infinity,
+                                            height: 174.h,
+                                          ),
                                         ),
                                       ),
                                       8.hs,

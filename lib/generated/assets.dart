@@ -2,9 +2,17 @@
 class Assets {
   Assets._();
   
-  static const String assetsImagesShirt = "assets/images/shirt.png";
+  static const String assetsImagesAddress = "assets/images/Address.png";
 
-  static const String assetsImagesShoes = "assets/images/shoes.png";
+  static const String assetsImagesBox = "assets/images/box.png";
+
+  static const String assetsImagesDetails = "assets/images/details.png";
+
+  static const String assetsImagesHeadphones = "assets/images/headphones.png";
+
+  static const String assetsImagesQuestion = "assets/images/question.png";
+
+  static const String assetsImagesVector = "assets/images/vector.png";
 
   static const String assetsLottieLoading = "assets/lottie/loading.json";
 
