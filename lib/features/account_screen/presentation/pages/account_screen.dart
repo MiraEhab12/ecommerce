@@ -3,6 +3,7 @@ import 'package:ecommerce_udemy/config/style/app_color.dart';
 import 'package:ecommerce_udemy/config/style/text_styles.dart';
 import 'package:ecommerce_udemy/core/widgets/components/app_image_view.dart';
 import 'package:ecommerce_udemy/features/account_screen/presentation/pages/widgets/account_list_widget.dart';
+import 'package:ecommerce_udemy/features/account_screen/presentation/pages/widgets/log_out_dialog.dart';
 import 'package:ecommerce_udemy/features/auth_screen/presentation/manager/auth_cubit.dart';
 import 'package:ecommerce_udemy/generated/assets.dart';
 import 'package:ecommerce_udemy/locator.dart';
@@ -69,73 +70,7 @@ class AccountScreen extends StatelessWidget {
               },
             ),
             200.hs,
-            InkWell(
-              onTap: () {
-                
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text("Logout?"),
-                      content: Text("Are you sure you want to logout?"),
-                      actions: [
-                        ElevatedButton(
-                          onPressed: () {
-                           // context.read<AuthCubit>().logout();
-                            RouterApp.pushNamed(RouteName.loginScreen);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            backgroundColor: AppColors.brightRed,
-                            fixedSize: Size(293, 54),
-                          ),
-                          child: Text(
-                            "Yes, Logout",
-                            style: AppTextStyle.font16white600,
-                          ),
-                        ),
-                        12.hs,
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              side: BorderSide(color: AppColors.bordercolor),
-                            ),
-    
-                            fixedSize: Size(293, 54),
-                          ),
-                          child: Text(
-                            "No, Cancel",
-                            style: AppTextStyle.font16black2600,
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-              child: Row(
-                children: [
-                  AppImageView(
-                    imagePath: Assets.assetsImagesVector,
-                    width: 24.w,
-                    height: 24.h,
-                  ),
-                  16.ws,
-                  Text(
-                    "Logout",
-                    style: AppTextStyle.font16black2600.copyWith(
-                      color: AppColors.brightRed,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+          LogOutDialogScreen()
           ],
         ),
       ),
